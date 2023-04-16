@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather-app</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <div class="input-information">
+            <form id="search-form" class="mb-3">
+              <div class="row">
+                <div class="col-9">
+                  <input
+                    type="search"
+                    placeholder="Enter a city.."
+                    class="form-control"
+                    id="city-input"
+                    autocomplete="off"
+                  />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="submit"
+                    value="Search"
+                    class="btn btn-primary w-100"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="weather-app-overview">
+            <div class="row">
+              <div class="col-6">
+                <div class="clearfix weather-temperature">
+                  <img src=".." alt="Clear" id="icon" class="float-left" />
+                  <div class="float-left">
+                    <strong id="temperature"></strong
+                    ><span class="units">
+                      <a href="#" id="celsius-link">ºC</a>|
+                      <a href="#" id="fahrenheit-link">ºF</a>
+                    </span>
+                  </div>
+                  <div class="description" id="description">Clear sky</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <ul class="right-over">
+                  <h1 id="city">Porto</h1>
+                  <li><span id="day">Sunday, 21:55</span></li>
+                  <li><span id="date">2023, April 2</span></li>
+                </ul>
+              </div>
+              <hr style="border: dotted 3px" />
+              <div class="additional-information">
+                <div class="row">
+                  <div class="col-2">
+                    <ul>
+                      <li class="value-info"><span id="humidity"></span> %</li>
+                      <li class="descript-info">Humidity</li>
+                    </ul>
+                  </div>
+                  <div class="col-2">
+                    <ul>
+                      <li class="value-info"><span id="wind"></span> Km/h</li>
+                      <li class="descript-info">Wind speed</li>
+                    </ul>
+                  </div>
+                  <div class="col-2">
+                    <ul>
+                      <li class="value-info">
+                        <span id="sunrise"></span>
+                      </li>
+                      <li class="descript-info">Sunrise</li>
+                    </ul>
+                  </div>
+                  <div class="col-2">
+                    <ul>
+                      <li class="value-info"><span id="sunset"></span></li>
+                      <li class="descript-info">Sunset</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <hr style="border: dotted 3px" />
+              <div class="weather-forecast-wrapper">
+                <div class="weather-forecast">
+                  <div class="row row-cols-5">
+                    <div class="col">
+                      <div class="container2 text-center" style="width: 100%">
+                        <h5>Mon</h5>
+                        <img src="" style="font-size: 40px" />🌦
+                        <p><strong>18º</strong>| 12º</p>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="container2 text-center" style="width: 100%">
+                        <h5>Tue</h5>
+                        <img src="" style="font-size: 40px" />🌧
+                        <p><strong>18º</strong>| 12º</p>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="container2 text-center" style="width: 100%">
+                        <h5>Wed</h5>
+                        <img src="" style="font-size: 40px" />🌤
+                        <p><strong>16º</strong>| 7º</p>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="container2 text-center" style="width: 100%">
+                        <h5>Thu</h5>
+                        <img src="" style="font-size: 40px" />🌤
+                        <p><strong>13º</strong>| 5º</p>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="container2 text-center">
+                        <h5>Fri</h5>
+                        <img src="" style="font-size: 40px" />🌦
+                        <p><strong>13º</strong>| 6º</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <small>, by Tatiana Fraga</small>
+    </div>
+    <script src="src/app.js"></script>
+  </body>
+</html>
