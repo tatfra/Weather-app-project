@@ -103,6 +103,7 @@ function displayCelsiusTemperature(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
+search("Porto");
 let celsiusTemperature = null;
 
 let form = document.querySelector("#search-form");

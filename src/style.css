@@ -17,9 +17,11 @@ li {
   padding: 0;
 }
 #description {
+  text-transform: capitalize;
   font-size: 12px;
   position: relative;
-  right: -15px;
+  right: -10px;
+  top: 30px;
 }
 li::first-letter {
   text-transform: capitalize;
@@ -85,9 +87,11 @@ h5 {
 }
 .descript-info {
   font-weight: bold;
+  text-align: center;
 }
 .value-info {
   font-weight: 500;
+  text-align: center;
 }
 
 .btn-primary {
