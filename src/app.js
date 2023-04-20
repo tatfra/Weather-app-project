@@ -1,16 +1,6 @@
 let now = new Date();
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-
+let day = now.getDate();
+let year = now.getFullYear();
 let months = [
   "January",
   "February",
@@ -26,24 +16,63 @@ let months = [
   "December",
 ];
 let month = months[now.getMonth()];
-let hour = now.getHours();
-if (hour < 10) {
-  hour = "0" + hour;
+
+let fullDateElement = document.querySelector("#date");
+fullDateElement.innerHTML = `${year}, ${month} ${day}`;
+
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = days[date.getDay()];
+
+  return `${day} ${hours}:${minutes}`;
 }
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = "0" + minutes;
+
+function formatHour(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let day = days[date.getDay()];
+
+  return `${hours}:${minutes}`;
 }
-
-let date = now.getDate();
-
-let year = now.getFullYear();
-
-let fullDate = document.querySelector("#date");
-fullDate.innerHTML = `${year} ${month}, ${date}`;
-
-let dayTime = document.querySelector("#day");
-dayTime.innerHTML = `${day}, ${hour}:${minutes}`;
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -57,7 +86,6 @@ function displayForecast(response) {
 
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
@@ -100,16 +128,21 @@ function displayTemperature(response) {
   let descriptionElement = document.querySelector("#description");
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
-  let humidityElement = document.querySelector("#humidity");
-  //let sunriseElement = document.querySelector("#sunrise");
-  //let sunsetElement = document.querySelector("#sunset");
+  let sunriseElement = document.querySelector("#sunrise");
+  let sunsetElement = document.querySelector("#sunset");
   let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#icon");
+  let dayElement = document.querySelector("#day");
+  let humidityElement = document.querySelector("#humidity");
+
+  sunriseElement.innerHTML = formatHour(response.data.sys.sunrise * 1000);
+  sunsetElement.innerHTML = formatHour(response.data.sys.sunset * 1000);
+
+  humidityElement.innerHTML = response.data.main.humidity;
+  dayElement.innerHTML = formatDate(response.data.dt * 1000);
   descriptionElement.innerHTML = response.data.weather[0].description;
-  //sunriseElement.innerHTML = Math.round(response.data.sys.sunrise);
-  //sunsetElement.innerHTML = Math.round(response.data.sys.sunset);
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
-  humidityElement = response.data.main.humidity;
+
   cityElement.innerHTML = response.data.name;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   iconElement.setAttribute(
@@ -136,33 +169,7 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
-}
-
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-let celsiusTemperature = null;
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Porto");
