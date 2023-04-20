@@ -59,18 +59,6 @@ function formatHour(timestamp) {
     minutes = `0${minutes}`;
   }
 
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
-  let day = days[date.getDay()];
-
   return `${hours}:${minutes}`;
 }
 
@@ -83,9 +71,7 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-
   let forecastElement = document.querySelector("#forecast");
-
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
@@ -137,7 +123,6 @@ function displayTemperature(response) {
 
   sunriseElement.innerHTML = formatHour(response.data.sys.sunrise * 1000);
   sunsetElement.innerHTML = formatHour(response.data.sys.sunset * 1000);
-
   humidityElement.innerHTML = response.data.main.humidity;
   dayElement.innerHTML = formatDate(response.data.dt * 1000);
   descriptionElement.innerHTML = response.data.weather[0].description;
