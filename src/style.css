@@ -24,6 +24,9 @@ h5 {
   font-size: 16px;
   font-weight: bold;
 }
+small{
+  font-size:10px;
+}
 a {
   color: #a3a6a7;
   font-weight: bold;
